@@ -90,6 +90,7 @@ First you need to create a Discord bot user, which you can do by following the i
     // with one of these characters (commands):
     "commandCharacters": ["!", "."],
     "ircStatusNotices": true // Enables notifications in Discord when people join/part in the relevant IRC channel
+    "ircSelfHighlight": false // Enables highlighting self in IRC if talking in Discord. (on by default)
   }
 ]
 ```
