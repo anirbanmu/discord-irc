@@ -12,6 +12,8 @@ RUN npm install && \
 
 # Final image
 FROM node:alpine
+ARG CONFIG_FILE_PATH=./config.json
+
 RUN apk --no-cache add shadow && \
     useradd --system discord-irc
 
@@ -22,7 +24,7 @@ WORKDIR /code/
 COPY --from=builder --chown=discord-irc:discord-irc /code/dist ./dist
 COPY --from=builder --chown=discord-irc:discord-irc /code/node_modules ./node_modules
 COPY --from=builder --chown=discord-irc:discord-irc /code/package.json /code/package-lock.json /code/.npmignore ./
-COPY --chown=discord-irc:discord-irc config.json /discord-irc-config
+COPY --chown=discord-irc:discord-irc $CONFIG_FILE_PATH /discord-irc-config
 
 USER discord-irc
 CMD ["npm", "start", "--", "--config", "/discord-irc-config"]

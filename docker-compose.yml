@@ -1,5 +1,8 @@
 version: '3'
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        CONFIG_FILE_PATH: ${CONFIG_FILE_PATH:-./config.json}
     restart: always
